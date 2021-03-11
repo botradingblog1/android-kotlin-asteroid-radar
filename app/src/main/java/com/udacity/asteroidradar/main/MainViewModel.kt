@@ -30,7 +30,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // Get info from repository
-    //val asteroidList = asteroidRepository.asteroidList
+    val asteroidList = asteroidRepository.asteroidList
     val pictureOfDay = asteroidRepository.pictureOfTheDay
     //val pictureOfDayUrl = MutableLiveData<String>(pictureOfDay?.value?.url)
 
