@@ -18,41 +18,44 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="0dp"
         app:cardElevation="5dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/left_well"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="8dp" />
+                app:layout_constraintGuide_begin="16dp" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/right_well"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="8dp" />
+                app:layout_constraintGuide_end="16dp" />
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                android:id="@+id/textview_title"
                 android:text="@{asteroid.codename}"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/left_well"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                tools:text="Asteroid title" />
+                tools:text="Asteroid title"
+                style="@style/text_title" />
+
+            <TextView
+                android:id="@+id/textview_approachdate"
+                android:text="@{asteroid.closeApproachDate}"
+                app:layout_constraintTop_toBottomOf="@+id/textview_title"
+                app:layout_constraintStart_toStartOf="@+id/left_well"
+                tools:text="Close approach date"
+                style="@style/text_body" />
 
             <View
                 android:id="@+id/clickableOverlay"
@@ -64,6 +67,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageview_hazardous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                app:statusIcon="@{asteroid.isPotentiallyHazardous}"
+                android:contentDescription="is potentially hazardous icon"
+                app:layout_constraintEnd_toEndOf="@+id/right_well"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

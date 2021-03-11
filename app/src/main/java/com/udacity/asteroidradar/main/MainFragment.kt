@@ -1,16 +1,13 @@
 package com.udacity.asteroidradar.main
 
-import android.content.Intent
-import android.icu.number.NumberFormatter.with
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.domain.Asteroid
@@ -31,28 +28,9 @@ class MainFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        /* val imageView = binding.activityMainImageOfTheDay
-
-        // Observe changes to picture of day
-        viewModel.pictureOfDay.observe(viewLifecycleOwner, Observer {
-            if ( null != it ) {
-                // Set pic of the day
-                Timber.d("url: "+it.url)
-                Picasso.get()
-                    .load(it.url)
-                    .into(imageView);
-            }
-        })*/
-
         asteroidListAdapter = AsteroidListAdapter(AsteroidClickListener {
-            // When a video is clicked this block or lambda will be called by DevByteAdapter
-
-            // context is not around, we can safely discard this click since the Fragment is no
-            // longer on the screen
-            //val packageManager = context?.packageManager ?: return@AsteroidClickListener
-
-            // todo
-            Timber.d("click: "+it.codename);
+            // Navigate to the detail fragment
+            this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
         })
 
         binding.root.findViewById<RecyclerView>(R.id.recyclerview_asteroid_list).apply {
