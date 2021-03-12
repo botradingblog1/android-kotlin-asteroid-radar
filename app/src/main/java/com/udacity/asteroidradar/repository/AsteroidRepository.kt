@@ -28,11 +28,18 @@ import java.util.*
 // Repository to either fetch Asteroid info from server or from database
 class AsteroidRepository(private val database: AsteroidDatabase) {
 
-    val asteroidList: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroidList()) {
+    val asteroidList: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getFutureAsteroidList(getTodaysDate())) {
         it.asDomainModel()
     }
 
     val pictureOfTheDay: LiveData<DbPictureOfTheDay> = database.pictureOfTheDayDao.getPictureOfTheDay()
+
+    private fun getTodaysDate(): String {
+        val startDate = Date()
+        var formatter = SimpleDateFormat("yyyy-MM-dd")
+
+        return formatter.format(startDate)
+    }
 
     private fun getQueryDates(): Tuple<String, String> {
         val startDate = Date()

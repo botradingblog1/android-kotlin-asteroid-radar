@@ -23,8 +23,7 @@ class AsteroidListAdapter(val callback: AsteroidClickListener) : RecyclerView.Ad
             field = value
             // For an extra challenge, update this to use the paging library.
 
-            // Notify any registered observers that the data set has changed. This will cause every
-            // element in our RecyclerView to be invalidated.
+            // Notify any registered observers that the data set has changed.
             notifyDataSetChanged()
         }
 

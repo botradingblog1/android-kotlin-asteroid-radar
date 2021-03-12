@@ -47,6 +47,7 @@
                 app:layout_constraintStart_toStartOf="@+id/left_well"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Asteroid title"
+                android:contentDescription="Name of the Near Earth Object"
                 style="@style/text_title" />
 
             <TextView
@@ -55,6 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textview_title"
                 app:layout_constraintStart_toStartOf="@+id/left_well"
                 tools:text="Close approach date"
+                android:contentDescription="Close approach date of the Near Earth Object"
                 style="@style/text_body" />
 
             <View
@@ -76,7 +78,7 @@
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
                 app:statusIcon="@{asteroid.isPotentiallyHazardous}"
-                android:contentDescription="is potentially hazardous icon"
+                android:contentDescription="Icon to identify if the Near Earth Object is potentially hazardous"
                 app:layout_constraintEnd_toEndOf="@+id/right_well"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />

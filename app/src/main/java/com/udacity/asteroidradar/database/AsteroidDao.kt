@@ -11,6 +11,9 @@ interface AsteroidDao {
     @Query("select * from tbl_asteroid order by closeApproachDate ASC")
     fun getAsteroidList(): LiveData<List<DbAsteroid>>
 
+    @Query("Select * from tbl_asteroid where closeApproachDate >= :date order by closeApproachDate ASC")
+    fun getFutureAsteroidList(date: String): LiveData<List<DbAsteroid>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(asteroidList: List<DbAsteroid>)
 }

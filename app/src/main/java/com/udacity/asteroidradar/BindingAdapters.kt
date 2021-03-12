@@ -4,6 +4,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
+import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.database.DbPictureOfTheDay
 
 
 @BindingAdapter("statusIcon")
@@ -43,8 +45,17 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 @BindingAdapter("pictureOfDay")
-fun bindPictureOfDay(view: ImageView, imageUrl: String?) {
-    if (imageUrl != null) {
+fun bindPictureOfDay(view: ImageView, pictureOfTheDay: DbPictureOfTheDay?) {
+    if (pictureOfTheDay == null) {
+        view.setImageBitmap(null)
+        return
+    }
+
+    val imageUrl = pictureOfTheDay.url
+    val mediaType = pictureOfTheDay.mediaType
+
+    if (mediaType.equals(Constants.MEDIA_TYPE_IMAGE) &&
+        imageUrl != null) {
         Picasso.get()
             .load(imageUrl)
             .fit()
